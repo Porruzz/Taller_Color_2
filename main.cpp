@@ -46,7 +46,7 @@ void bgr2hsv(const Vec3b &bgr, Vec3b &hsv) {
   double s = (cmax == 0) ? 0 : (delta / cmax);
   double v = cmax;
 
-  hsv[0] = static_cast<uchar>(h / 2);   // 0-179 (Standard OpenCV range)
+  hsv[0] = static_cast<uchar>(h / 2);   // 0-179
   hsv[1] = static_cast<uchar>(s * 255); // 0-255
   hsv[2] = static_cast<uchar>(v * 255); // 0-255
 }
@@ -93,14 +93,27 @@ void hsv2bgr(const Vec3b &hsv, Vec3b &bgr) {
   bgr[2] = static_cast<uchar>((r_prime + m) * 255);
 }
 
+// Función auxiliar para cargar imagen de forma robusta
+Mat cargar_imagen() {
+  Mat img = imread("imagen.jpg");
+  if (img.empty()) {
+    img = imread("../imagen.jpg");
+  }
+  if (img.empty()) {
+    cout << "\n[ERROR] No se pudo encontrar 'imagen.jpg' en la carpeta actual "
+            "ni en la de arriba."
+         << endl;
+    cout << "Asegúrate de que la imagen exista." << endl;
+  }
+  return img;
+}
+
 // --- EJERCICIOS ---
 
 void ejercicio1_bgr_to_hsv() {
-  Mat img_bgr = imread("imagen.jpg");
-  if (img_bgr.empty()) {
-    cout << "No se encontró imagen.jpg" << endl;
+  Mat img_bgr = cargar_imagen();
+  if (img_bgr.empty())
     return;
-  }
 
   int rows = img_bgr.rows;
   int cols = img_bgr.cols;
@@ -119,7 +132,7 @@ void ejercicio1_bgr_to_hsv() {
 }
 
 void ejercicio2_modificar_saturacion() {
-  Mat img_bgr = imread("imagen.jpg");
+  Mat img_bgr = cargar_imagen();
   if (img_bgr.empty())
     return;
 
@@ -155,7 +168,7 @@ void ejercicio2_modificar_saturacion() {
 }
 
 void ejercicio3_kmeans_manual(int K = 5) {
-  Mat img_bgr = imread("imagen.jpg");
+  Mat img_bgr = cargar_imagen();
   if (img_bgr.empty())
     return;
 
@@ -249,7 +262,7 @@ void ejercicio3_kmeans_manual(int K = 5) {
 }
 
 void ejercicio4_gray_world() {
-  Mat img_bgr = imread("imagen.jpg");
+  Mat img_bgr = cargar_imagen();
   if (img_bgr.empty())
     return;
 
@@ -294,7 +307,7 @@ void ejercicio4_gray_world() {
 }
 
 void ejercicio6_gamma(double gamma = 1.5) {
-  Mat img_bgr = imread("imagen.jpg");
+  Mat img_bgr = cargar_imagen();
   if (img_bgr.empty())
     return;
 
@@ -321,7 +334,7 @@ void ejercicio6_gamma(double gamma = 1.5) {
 }
 
 void ejercicio7_vignette(double k = 0.4) {
-  Mat img_bgr = imread("imagen.jpg");
+  Mat img_bgr = cargar_imagen();
   if (img_bgr.empty())
     return;
 

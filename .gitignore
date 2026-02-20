@@ -1,16 +1,10 @@
-# Binarios
+build/
+*.o
+*.ppm
 taller
 taller_no_opencv
-taller_opencv
-build/
-
-# Imágenes temporales y resultados
-*.ppm
-!imagen.ppm
-*.png
-*.jpg
-!imagen.jpg
-
-# Archivos de PDF
-*.pdf
-*.py
+extract_pdf.py
+.vscode/
+.DS_Store
+imagen.jpg
+imagen.ppm

@@ -1,37 +1,36 @@
-# Taller de Procesamiento de Color (Sin OpenCV)
+# Taller Color OpenCV
 
-Este proyecto implementa diversos algoritmos de procesamiento de imágenes "desde cero" en C++, utilizando el formato de imagen PPM para evitar dependencias de librerías externas como OpenCV.
+Este proyecto implementa varios algoritmos de procesamiento de color utilizando OpenCV. 
+Se incluyen dos modos de ejecución para cada ejercicio:
 
-## Algoritmos Implementados
-1. **Conversión BGR a HSV**: Transformación manual de espacios de color.
-2. **Modificación de Saturación**: Aumento manual de la intensidad del color.
-3. **K-Means Clustering**: Segmentación de colores y cuantización manual.
-4. **Gray World**: Balance de blancos y constancia de color.
-5. **Corrección Gamma**: Ajuste de luminancia mediante tablas de búsqueda (LUT).
-6. **Corrección de Viñeteo**: Compensación de la caída de luz radial.
+1.  **Modo Manual**: Implementación de los algoritmos "desde cero" utilizando bucles anidados y fórmulas matemáticas directas, sin depender de las funciones de alto nivel de OpenCV (como `cvtColor`, `kmeans`, etc.), tal como se solicita en el taller.
+2.  **Modo Nativo**: Implementación utilizando las funciones optimizadas de la librería OpenCV.
+
+## Ejercicios Incluidos
+
+-   **BGR a HSV**: Conversión de espacios de color.
+-   **Modificación de Saturación**: Aumento directo de la intensidad del color.
+-   **K-Means**: Segmentación por color (cuantización).
+-   **Gray World**: Algoritmo de balance de blancos para constancia de color.
+-   **Corrección Gamma**: Ajuste radiométrico de brillo.
+-   **Corrección de Viñeteo**: Compensación de la caída de luz en los bordes.
 
 ## Requisitos
-*   Compilador C++ (g++)
-*   ImageMagick (opcional, para convertir imágenes a .ppm)
 
-## Cómo Ejecutar
+-   OpenCV 4.x
+-   OpenCV Contrib (para el módulo `xphoto` en el modo nativo de Gray World)
+-   CMake 3.10+
+-   Compilador C++11 o superior
 
-1.  **Preparar la imagen**: El programa busca un archivo llamado `imagen.ppm`. Si tienes un JPG, conviértelo:
-    ```bash
-    convert imagen.jpg -compress none imagen.ppm
-    ```
+## Compilación y Ejecución
 
-2.  **Compilar**:
-    ```bash
-    g++ main.cpp -o taller -O3
-    ```
+```bash
+mkdir build && cd build
+cmake ..
+make
+./taller
+```
 
-3.  **Correr**:
-    ```bash
-    ./taller
-    ```
+## Uso
 
-4.  **Ver Resultados**: Los resultados se guardarán como archivos `.ppm` en la carpeta raíz (ej. `ejercicio3_kmeans.ppm`). Puedes abrirlos con cualquier visor de imágenes.
-
----
-Desarrollado para el Taller de Color.
+Al ejecutar el programa, se presentará un menú interactivo. Puedes cambiar entre el modo **Manual** y **Nativo** presionando la opción `8` en el menú.

@@ -1,0 +1,16 @@
+# Binarios
+taller
+taller_no_opencv
+taller_opencv
+build/
+
+# Imágenes temporales y resultados
+*.ppm
+!imagen.ppm
+*.png
+*.jpg
+!imagen.jpg
+
+# Archivos de PDF
+*.pdf
+*.py
